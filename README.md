@@ -1,4 +1,4 @@
-# API Geradora de PDFs :snake:
+# API Geradora de PDFs (Python) :snake:
 
 ## Como utilizar
 
