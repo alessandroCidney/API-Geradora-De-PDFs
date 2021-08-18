@@ -1,10 +1,7 @@
-from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import A4
+from generate import generatePDF
 
 from flask import Flask, jsonify, request
 import json
-
-import os
 
 # pip install -U flask-cors
 
@@ -14,7 +11,7 @@ from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 
-@app.route('/test', methods=['POST'])
+@app.route('/generate', methods=['POST'])
 @cross_origin()
 def criarPDF():
 	try:
@@ -23,19 +20,7 @@ def criarPDF():
 		arquivo = response.get("filename")
 		conteudo = response.get("content")
 
-		diretorio = os.path.dirname(__file__)
-
-		cnv = canvas.Canvas("{}\\{}.pdf".format(diretorio, arquivo), pagesize=A4)
-
-		# As coordenadas são medidas em pontos, não em milimetros
-		cnv.drawString(100, 790-100, "Olá mundo! Valor desejado: {}".format(conteudo))
-		cnv.save()
-
-		results = {
-			"local_do_arquivo": "{}\\{}.pdf".format(diretorio, arquivo),
-			"formato": "PDF",
-			"houveram_erros": "Não"
-		}
+		results = generatePDF(arquivo, conteudo)
 
 		return jsonify(results)
 	except:

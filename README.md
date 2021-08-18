@@ -7,11 +7,11 @@
 - A API será ativada e poderá ser utilizada através de `http://localhost:5000`
 
 ### Usando a API
-- Para criar um PDF, basta realizar uma requisição de método POST para a rota `/test`, passando no corpo da requisição do nome do arquivo (sem extensão) por meio de "filename" e o conteúdo por meio de "content"
+- Para criar um PDF, basta realizar uma requisição de método POST para a rota `/generate`, passando no corpo da requisição do nome do arquivo (sem extensão) por meio de "filename" e o conteúdo por meio de "content"
 
 Exemplo com JavaScript:
 ```javascript
-let results = await fetch('http://localhost:5000/test', {
+let results = await fetch('http://localhost:5000/generate', {
 	method: 'POST',
 	headers: {
 		"Content-Type": "application/json"
